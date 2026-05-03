@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multinational Insurance Brokers | Trusted. Global. Insured.</title>
+<meta name="description" content="Multinational Insurance Brokers (MIB) — delivering expert insurance brokerage solutions across Africa and beyond. Trusted. Global. Insured.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:   #0b1f3a;
+    --navy2:  #0f2848;
+    --gold:   #c4a050;
+    --gold2:  #e8d08a;
+    --cream:  #f7f3ec;
+    --cream2: #e8e4dc;
+    --text:   #1a2a3a;
+    --muted:  #8a7e6e;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px;
+    height: 72px;
+    background: rgba(11,31,58,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(196,160,80,0.15);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,0.25); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none;
+  }
+  .nav-emblem {
+    width: 40px; height: 40px;
+    border: 1.5px solid rgba(196,160,80,0.6);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; flex-shrink: 0;
+  }
+  .nav-emblem::before {
+    content: ''; position: absolute; inset: 3px;
+    border: 0.5px solid rgba(196,160,80,0.25); border-radius: 50%;
+  }
+  .nav-emblem span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 1px;
+  }
+  .nav-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; color: rgba(240,232,213,0.8);
+    line-height: 1.4;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 11px; font-weight: 500; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    color: rgba(240,232,213,0.65);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--navy) !important;
+    background: var(--gold);
+    padding: 10px 22px; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { background: var(--gold2) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+  }
+
+  /* diagonal texture */
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      135deg,
+      transparent, transparent 60px,
+      rgba(255,255,255,0.012) 60px, rgba(255,255,255,0.012) 61px
+    );
+  }
+
+  /* gold orb */
+  #hero::after {
+    content: ''; position: absolute;
+    right: -120px; top: -120px;
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(196,160,80,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto;
+    padding: 120px 64px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .hero-left { animation: fadeUp 0.9s ease both; }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px;
+  }
+  .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+  .hero-eyebrow span {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 6vw, 78px);
+    font-weight: 700; line-height: 1.05;
+    color: #f0e8d5; margin-bottom: 24px;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 15px; font-weight: 300; line-height: 1.8;
+    color: rgba(240,232,213,0.6); max-width: 460px; margin-bottom: 48px;
+  }
+
+  .hero-actions { display: flex; align-items: center; gap: 24px; }
+  .btn-primary {
+    display: inline-block; text-decoration: none;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 16px 36px; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    color: rgba(240,232,213,0.7);
+    font-size: 11px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold); }
+  .btn-ghost-arrow {
+    width: 32px; height: 1px; background: currentColor; position: relative;
+    transition: width 0.2s;
+  }
+  .btn-ghost-arrow::after {
+    content: ''; position: absolute; right: 0; top: -3px;
+    width: 7px; height: 7px;
+    border-right: 1px solid currentColor; border-top: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  .btn-ghost:hover .btn-ghost-arrow { width: 48px; }
+
+  /* Hero right — big emblem */
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+  .hero-emblem-wrap {
+    position: relative; width: 320px; height: 320px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-emblem-ring {
+    position: absolute; inset: 0;
+    border: 1px solid rgba(196,160,80,0.2); border-radius: 50%;
+    animation: spin 24s linear infinite;
+  }
+  .hero-emblem-ring2 {
+    position: absolute; inset: 24px;
+    border: 1px dashed rgba(196,160,80,0.12); border-radius: 50%;
+    animation: spin 18s linear infinite reverse;
+  }
+  .hero-emblem-core {
+    width: 220px; height: 220px;
+    border: 2px solid rgba(196,160,80,0.45); border-radius: 50%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; position: relative; z-index: 1;
+    background: rgba(11,31,58,0.6);
+    backdrop-filter: blur(4px);
+  }
+  .hero-emblem-core::before {
+    content: ''; position: absolute; inset: 8px;
+    border: 1px solid rgba(196,160,80,0.18); border-radius: 50%;
+  }
+  .hero-emblem-initials {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; font-weight: 700; color: var(--gold);
+    letter-spacing: 3px; line-height: 1;
+  }
+  .hero-emblem-tagline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(196,160,80,0.6);
+  }
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    background: var(--navy2);
+    border-top: 1px solid rgba(196,160,80,0.12);
+    border-bottom: 1px solid rgba(196,160,80,0.12);
+  }
+  .stats-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 64px;
+    display: grid; grid-template-columns: repeat(4,1fr);
+  }
+  .stat-item {
+    padding: 36px 24px;
+    border-right: 1px solid rgba(196,160,80,0.1);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 700; color: var(--gold); line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(240,232,213,0.45);
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 112px 0; }
+  .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 64px; }
+
+  .section-eyebrow {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 20px;
+  }
+  .section-eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+  .section-eyebrow span {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px); font-weight: 700; line-height: 1.1;
+    color: var(--navy); margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; }
+  .section-body {
+    font-size: 15px; font-weight: 300; line-height: 1.85; color: #4a5568;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-left {}
+  .about-right {
+    position: relative;
+  }
+  .about-card {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 56px 48px;
+    position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: ''; position: absolute; inset: 0;
+    border: 1.5px solid rgba(196,160,80,0.2); border-radius: 4px; pointer-events: none;
+  }
+  .about-card-bg {
+    position: absolute; right: -60px; bottom: -60px;
+    width: 240px; height: 240px;
+    border: 1px solid rgba(196,160,80,0.08); border-radius: 50%;
+  }
+  .about-card-bg::before {
+    content: ''; position: absolute; inset: 24px;
+    border: 1px solid rgba(196,160,80,0.06); border-radius: 50%;
+  }
+  .about-person-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 700; color: #f0e8d5; margin-bottom: 4px;
+  }
+  .about-person-creds {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; color: var(--gold); margin-bottom: 4px;
+  }
+  .about-person-title {
+    font-size: 10px; font-weight: 600; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(196,160,80,0.65); margin-bottom: 28px;
+  }
+  .about-divider {
+    width: 48px; height: 1px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 24px;
+  }
+  .about-card-text {
+    font-size: 13px; font-weight: 300; line-height: 1.85;
+    color: rgba(240,232,213,0.55);
+  }
+  .about-body { font-size: 15px; font-weight: 300; line-height: 1.9; color: #4a5568; margin-bottom: 32px; }
+  .about-values {
+    display: flex; flex-direction: column; gap: 16px; margin-top: 36px;
+  }
+  .about-value {
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .about-value-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+    flex-shrink: 0; margin-top: 7px;
+  }
+  .about-value-text strong {
+    display: block; font-size: 12px; font-weight: 600; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--navy); margin-bottom: 3px;
+  }
+  .about-value-text span {
+    font-size: 13px; font-weight: 300; color: #6a7a8a; line-height: 1.6;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream2); }
+  .services-header {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    align-items: end; margin-bottom: 64px;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .service-card {
+    background: #fff;
+    padding: 44px 36px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: var(--navy); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon {
+    width: 48px; height: 48px; margin-bottom: 24px;
+    border: 1px solid rgba(196,160,80,0.35); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.3s;
+  }
+  .service-card:hover .service-icon { border-color: rgba(196,160,80,0.6); }
+  .service-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 700; color: var(--navy);
+    margin-bottom: 12px; transition: color 0.3s;
+    line-height: 1.2;
+  }
+  .service-card:hover .service-name { color: #f0e8d5; }
+  .service-desc {
+    font-size: 13px; font-weight: 300; line-height: 1.75;
+    color: #6a7a8a; transition: color 0.3s;
+  }
+  .service-card:hover .service-desc { color: rgba(240,232,213,0.5); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); position: relative; overflow: hidden; }
+  #contact::before {
+    content: ''; position: absolute;
+    left: -200px; bottom: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(196,160,80,0.06) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 64px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .contact-left .section-title { color: #f0e8d5; }
+  .contact-body {
+    font-size: 15px; font-weight: 300; line-height: 1.85;
+    color: rgba(240,232,213,0.5); margin-bottom: 48px;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 28px; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 18px;
+  }
+  .contact-item-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    border: 1px solid rgba(196,160,80,0.25); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .contact-item-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .contact-item-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(196,160,80,0.6); margin-bottom: 4px;
+  }
+  .contact-item-value {
+    font-size: 14px; font-weight: 400; color: rgba(240,232,213,0.75); line-height: 1.6;
+  }
+  .contact-item-value a {
+    color: inherit; text-decoration: none; transition: color 0.2s;
+  }
+  .contact-item-value a:hover { color: var(--gold); }
+
+  /* Contact form */
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(196,160,80,0.6);
+  }
+  .form-input {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(196,160,80,0.2);
+    border-radius: 2px; padding: 14px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; font-weight: 300;
+    color: rgba(240,232,213,0.8);
+    outline: none; transition: border-color 0.2s, background 0.2s;
+  }
+  .form-input::placeholder { color: rgba(240,232,213,0.2); }
+  .form-input:focus {
+    border-color: rgba(196,160,80,0.5);
+    background: rgba(255,255,255,0.06);
+  }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+  .form-submit {
+    align-self: flex-start;
+    background: var(--gold); color: var(--navy);
+    border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 2.5px;
+    text-transform: uppercase; padding: 16px 40px; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .form-submit:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1c;
+    border-top: 1px solid rgba(196,160,80,0.1);
+    padding: 40px 64px;
+  }
+  .footer-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .footer-emblem {
+    width: 32px; height: 32px;
+    border: 1px solid rgba(196,160,80,0.4); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .footer-emblem span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px; font-weight: 700; color: var(--gold);
+  }
+  .footer-name {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: rgba(240,232,213,0.4);
+  }
+  .footer-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px; font-style: italic; color: rgba(196,160,80,0.4);
+  }
+  .footer-copy {
+    font-size: 11px; color: rgba(240,232,213,0.25); letter-spacing: 0.5px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 100px 24px 60px; }
+    .hero-right { display: none; }
+    .stats-inner { grid-template-columns: repeat(2,1fr); padding: 0 24px; }
+    .section-inner { padding: 0 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-header { grid-template-columns: 1fr; gap: 20px; }
+    .services-grid { grid-template-columns: 1fr; gap: 2px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { padding: 32px 24px; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <div class="nav-emblem"><span>MIB</span></div>
+    <div class="nav-name">Multinational<br>Insurance Brokers</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span>Insurance Brokerage</span>
+      </div>
+      <h1 class="hero-title">
+        Protection You<br>Can <em>Trust,</em><br>Globally.
+      </h1>
+      <p class="hero-subtitle">
+        Multinational Insurance Brokers delivers expert, independent brokerage solutions — connecting individuals, businesses, and institutions with the right coverage across Africa and beyond.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Get a Quote</a>
+        <a href="#services" class="btn-ghost">
+          Our Services
+          <span class="btn-ghost-arrow"></span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-emblem-wrap">
+        <div class="hero-emblem-ring"></div>
+        <div class="hero-emblem-ring2"></div>
+        <div class="hero-emblem-core">
+          <span class="hero-emblem-initials">MIB</span>
+          <span class="hero-emblem-tagline">Trusted · Global · Insured</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number">500+</div>
+      <div class="stat-label">Clients Served</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Insurance Partners</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Independent Brokers</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>About MIB</span>
+        </div>
+        <h2 class="section-title">Independent Expertise, <em>Global Reach</em></h2>
+        <p class="about-body">
+          Multinational Insurance Brokers (MIB) is an independent brokerage firm committed to delivering tailored insurance solutions that protect what matters most. We act solely in the interest of our clients — not the insurers — ensuring unbiased advice and competitive coverage.
+        </p>
+        <p class="about-body">
+          From individuals and SMEs to large corporates and institutions, our team brings deep industry knowledge, professional rigour, and a genuine commitment to client outcomes.
+        </p>
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-dot"></div>
+            <div class="about-value-text">
+              <strong>Client First</strong>
+              <span>We represent you, not the insurer. Independent advice, always.</span>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-dot"></div>
+            <div class="about-value-text">
+              <strong>Professional Rigour</strong>
+              <span>Accredited professionals with deep regulatory and market knowledge.</span>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-dot"></div>
+            <div class="about-value-text">
+              <strong>Seamless Claims Support</strong>
+              <span>We stand with you from policy inception through to claims resolution.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-right reveal reveal-delay-2">
+        <div class="about-card">
+          <div class="about-card-bg"></div>
+          <div class="about-person-name">Philemon Piodam Adaamba</div>
+          <div class="about-person-creds">BA &nbsp;·&nbsp; MBA &nbsp;·&nbsp; ACIIG</div>
+          <div class="about-person-title">Chief Executive Officer</div>
+          <div class="about-divider"></div>
+          <p class="about-card-text">
+            A seasoned insurance professional with extensive experience spanning corporate, commercial, and personal lines brokerage. Mr. Adaamba leads MIB with a vision of building Africa's most trusted independent brokerage firm — one client relationship at a time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-header">
+      <div class="reveal">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span>What We Cover</span>
+        </div>
+        <h2 class="section-title">Comprehensive <em>Coverage</em> Solutions</h2>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="section-body">
+          We work with leading insurers to structure the right cover for every risk profile — from everyday personal lines to complex corporate and liability solutions.
+        </p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-name">Motor &amp; Personal Lines</div>
+        <p class="service-desc">Comprehensive motor insurance, home and contents cover, travel, and personal accident policies tailored to individual needs.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <div class="service-name">Corporate &amp; Commercial</div>
+        <p class="service-desc">Property, fire, burglary, and business interruption cover for businesses of all sizes — structured around your operational risk profile.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="service-name">Health &amp; Life</div>
+        <p class="service-desc">Group health schemes, individual medical insurance, life assurance, and credit life products for employees and individuals.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        </div>
+        <div class="service-name">Marine &amp; Cargo</div>
+        <p class="service-desc">Import and export cargo insurance, marine hull, and freight liability cover for businesses engaged in international trade.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-4">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="service-name">Liability &amp; Professional</div>
+        <p class="service-desc">Public liability, professional indemnity, directors &amp; officers liability, and product liability policies for professionals and corporates.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-5">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="service-name">Risk Consulting</div>
+        <p class="service-desc">Independent risk assessments, coverage gap analysis, and policy review services to ensure your portfolio is properly structured.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">
+        <div class="section-eyebrow-line"></div>
+        <span>Get In Touch</span>
+      </div>
+      <h2 class="section-title" style="color:#f0e8d5;">Start a <em>Conversation</em></h2>
+      <p class="contact-body">
+        Whether you need a new policy, a review of existing cover, or independent advice on a complex risk — we're here to help. Reach out and one of our brokers will respond promptly.
+      </p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Telephone</div>
+            <div class="contact-item-value">
+              <a href="tel:+233244519003">0244 519 003</a> &nbsp;|&nbsp;
+              <a href="tel:+233202013354">0202 013 354</a>
+            </div>
+            <div class="contact-item-value" style="margin-top: 8px;">
+              <a href="https://wa.me/233244519003" target="_blank" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5;"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                WhatsApp: 0244 519 003
+              </a> &nbsp;|&nbsp;
+              <a href="https://wa.me/233202013354" target="_blank" style="display: inline-flex; align-items: center; gap: 6px;">
+                <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5;"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                WhatsApp: 0202 013 354
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">
+              <a href="mailto:philemon.adaamba@mibrokers.org">philemon.adaamba@mibrokers.org</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">520/4, Jones Nelson Street, Adabraka, Accra, Ghana</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <div>
+            <div class="contact-item-label">Website</div>
+            <div class="contact-item-value">
+              <a href="https://www.mibrokers.org" target="_blank">www.mibrokers.org</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" class="form-input" placeholder="0XX XXX XXXX">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" class="form-input" placeholder="you@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Type of Cover</label>
+          <input type="text" class="form-input" placeholder="e.g. Motor, Health, Corporate…">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-input" placeholder="Tell us about your insurance needs…"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Enquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#hero" class="footer-logo">
+      <div class="footer-emblem"><span>MIB</span></div>
+      <div class="footer-name">Multinational Insurance Brokers</div>
+    </a>
+    <div class="footer-tagline">Trusted. Global. Insured.</div>
+    <div class="footer-copy">&copy; 2026 MIB. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
