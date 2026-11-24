@@ -51,6 +51,7 @@
   }
   .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 32px; }
 
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .skip { position: absolute; left: -9999px; top: 8px; background: var(--white); padding: 8px 16px; z-index: 200; }
   .skip:focus { left: 8px; }
 
@@ -99,11 +100,25 @@
   .hero .lead { margin-bottom: 32px; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
-  .contact-card {
-    background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--brand);
-    border-radius: 8px; padding: 28px;
-  }
-  .contact-card h2 { font-size: 22px; margin-bottom: 18px; }
+  .quote-card { border-top: 4px solid var(--brand); gap: 16px; }
+  .quote-card h2 { font-size: 22px; margin-bottom: 4px; }
+  .btn-block { width: 100%; justify-content: center; }
+
+  /* Service quote links */
+  .cover-link { display: inline-block; margin-top: 10px; font-weight: 700; text-decoration: none; }
+  .cover-link:hover { text-decoration: underline; }
+
+  /* CTA band */
+  .cta-band { background: var(--brand); color: var(--white); padding: 64px 0; }
+  .cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+  .cta-band h2 { color: var(--white); margin-bottom: 6px; }
+  .cta-band p { color: #f3d9dc; font-size: 18px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn-light { background: var(--white); color: var(--brand); border-color: var(--white); }
+  .btn-light:hover { background: var(--brand-tint); border-color: var(--brand-tint); }
+  .btn-outline-light { background: transparent; color: var(--white); border-color: var(--white); }
+  .btn-outline-light:hover { background: rgba(255,255,255,.12); }
+  .cta-band a:focus-visible { outline-color: var(--white); }
   .contact-list { list-style: none; display: grid; gap: 16px; }
   .contact-list dt, .contact-list .label { font-size: 14px; font-weight: 700; color: var(--muted); }
   .contact-list a { color: var(--ink); text-decoration: none; font-weight: 600; }
@@ -202,7 +217,9 @@
     .services-list, .steps { grid-template-columns: 1fr; }
     .steps { gap: 32px; }
     .form-row { grid-template-columns: 1fr; }
-    form, .leader, .contact-card { padding: 24px; }
+    form, .leader { padding: 24px; }
+    .cta-band { padding: 48px 0; }
+    .cta-actions, .cta-actions .btn { width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -230,10 +247,10 @@
     <div class="wrap hero-grid">
       <div>
         <p class="kicker">Independent insurance brokers in Accra</p>
-        <h1>Independent advice on insurance, from choosing cover to settling claims.</h1>
+        <h1>Insurance advice on your side, from cover to claims.</h1>
         <p class="lead">We work for you, not the insurer. MIB compares cover from leading insurers for individuals, businesses and institutions, and stays with you through every claim.</p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary">Request a quote</a>
+          <a href="tel:+233244519003" class="btn btn-primary">Call 0244 519 003</a>
           <a href="https://wa.me/233244519003" class="btn btn-secondary" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
             WhatsApp a broker
@@ -241,19 +258,32 @@
         </div>
       </div>
 
-      <aside class="contact-card" aria-labelledby="speak-heading">
-        <h2 id="speak-heading">Speak to a broker</h2>
-        <ul class="contact-list">
-          <li><div class="label">Telephone</div>
-            <a href="tel:+233244519003">0244 519 003</a> · <a href="tel:+233202013354">0202 013 354</a></li>
-          <li><div class="label">WhatsApp</div>
-            <a href="https://wa.me/233244519003" target="_blank" rel="noopener">0244 519 003</a></li>
-          <li><div class="label">Email</div>
-            <a href="mailto:philemon.adaamba@mibrokers.org">philemon.adaamba@mibrokers.org</a></li>
-          <li><div class="label">Office</div>
-            520/4 Jones Nelson Street, Adabraka, Accra</li>
-        </ul>
-      </aside>
+      <form class="quote-card" data-quote novalidate aria-labelledby="quick-heading">
+        <h2 id="quick-heading">Get a quote on WhatsApp</h2>
+        <div class="field">
+          <label for="h-cover">What do you need to cover?</label>
+          <select id="h-cover" name="cover">
+            <option>Motor and personal</option>
+            <option>Corporate and commercial</option>
+            <option>Health and life</option>
+            <option>Marine and cargo</option>
+            <option>Liability and professional</option>
+            <option>Risk consulting</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="h-name">Full name</label>
+          <input id="h-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="h-phone">Phone number</label>
+          <input id="h-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+        </div>
+        <p class="error" role="alert"></p>
+        <button type="submit" class="btn btn-primary btn-block">Send on WhatsApp</button>
+        <p class="form-note">Or call <a href="tel:+233244519003">0244 519 003</a> · <a href="tel:+233202013354">0202 013 354</a></p>
+      </form>
     </div>
   </section>
 
@@ -271,12 +301,12 @@
       <h2>Cover we arrange</h2>
       <p class="lead">We work with leading insurers to structure the right cover for each risk, from everyday personal policies to complex corporate and liability programmes.</p>
       <ul class="services-list">
-        <li><h3>Motor and personal</h3><p>Motor insurance, home and contents, travel and personal accident policies.</p></li>
-        <li><h3>Corporate and commercial</h3><p>Property, fire, burglary and business interruption cover, built around how your business operates.</p></li>
-        <li><h3>Health and life</h3><p>Group health schemes, individual medical cover, life assurance and credit life for staff and individuals.</p></li>
-        <li><h3>Marine and cargo</h3><p>Import and export cargo, marine hull and freight liability for businesses in international trade.</p></li>
-        <li><h3>Liability and professional</h3><p>Public liability, professional indemnity, directors and officers, and product liability.</p></li>
-        <li><h3>Risk consulting</h3><p>Independent risk assessments, coverage gap analysis and reviews of your existing policies.</p></li>
+        <li><h3>Motor and personal</h3><p>Motor insurance, home and contents, travel and personal accident policies.</p><a href="#contact" class="cover-link" data-cover="Motor and personal">Get a quote<span class="sr-only"> for motor and personal cover</span> &rarr;</a></li>
+        <li><h3>Corporate and commercial</h3><p>Property, fire, burglary and business interruption cover, built around how your business operates.</p><a href="#contact" class="cover-link" data-cover="Corporate and commercial">Get a quote<span class="sr-only"> for corporate and commercial cover</span> &rarr;</a></li>
+        <li><h3>Health and life</h3><p>Group health schemes, individual medical cover, life assurance and credit life for staff and individuals.</p><a href="#contact" class="cover-link" data-cover="Health and life">Get a quote<span class="sr-only"> for health and life cover</span> &rarr;</a></li>
+        <li><h3>Marine and cargo</h3><p>Import and export cargo, marine hull and freight liability for businesses in international trade.</p><a href="#contact" class="cover-link" data-cover="Marine and cargo">Get a quote<span class="sr-only"> for marine and cargo cover</span> &rarr;</a></li>
+        <li><h3>Liability and professional</h3><p>Public liability, professional indemnity, directors and officers, and product liability.</p><a href="#contact" class="cover-link" data-cover="Liability and professional">Get a quote<span class="sr-only"> for liability and professional cover</span> &rarr;</a></li>
+        <li><h3>Risk consulting</h3><p>Independent risk assessments, coverage gap analysis and reviews of your existing policies.</p><a href="#contact" class="cover-link" data-cover="Risk consulting">Get a quote<span class="sr-only"> for risk consulting cover</span> &rarr;</a></li>
       </ul>
     </div>
   </section>
@@ -310,6 +340,19 @@
     </div>
   </section>
 
+  <aside class="cta-band" aria-labelledby="cta-heading">
+    <div class="wrap cta-inner">
+      <div>
+        <h2 id="cta-heading">Not sure what cover you need?</h2>
+        <p>Talk it through with a broker. There's no obligation to buy.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="tel:+233244519003" class="btn btn-light">Call 0244 519 003</a>
+        <a href="https://wa.me/233244519003" class="btn btn-outline-light" target="_blank" rel="noopener">WhatsApp a broker</a>
+      </div>
+    </div>
+  </aside>
+
   <section class="contact" id="contact">
     <div class="wrap contact-grid">
       <div>
@@ -318,7 +361,9 @@
         <p class="lead">Need a new policy, a review of your current cover or advice on a complex risk? Send us the details and a broker will get back to you.</p>
         <ul class="contact-list">
           <li><div class="label">Telephone</div>
-            <a href="tel:+233244519003">0244 519 003</a> · <a href="tel:+233202013354">0202 013 354</a></li>
+            <a href="tel:+233244519003">0244 519 003</a> · <a href="tel:+233202013354">0202 013 354</a> · <a href="tel:+233264590667">0264 590 667</a></li>
+          <li><div class="label">WhatsApp</div>
+            <a href="https://wa.me/233244519003" target="_blank" rel="noopener">0244 519 003</a></li>
           <li><div class="label">Email</div>
             <a href="mailto:philemon.adaamba@mibrokers.org">philemon.adaamba@mibrokers.org</a></li>
           <li><div class="label">Office</div>
@@ -326,7 +371,7 @@
         </ul>
       </div>
 
-      <form id="quote-form" novalidate>
+      <form id="quote-form" data-quote novalidate>
         <div class="form-row">
           <div class="field">
             <label for="f-name">Full name</label>
@@ -357,7 +402,7 @@
           <label for="f-message">What would you like to insure? <span class="opt">(optional)</span></label>
           <textarea id="f-message" name="message"></textarea>
         </div>
-        <p class="error" id="form-error" role="alert"></p>
+        <p class="error" role="alert"></p>
         <div>
           <button type="submit" class="btn btn-primary">Send on WhatsApp</button>
         </div>
@@ -374,7 +419,7 @@
       <span>Multinational Insurance Brokers</span>
     </div>
     <div>520/4 Jones Nelson Street, Adabraka, Accra · <a href="tel:+233244519003">0244 519 003</a></div>
-    <div>&copy; 2026 MIB. All rights reserved.</div>
+    <div>&copy; 2026 Multinational Insurance Brokers Ltd. All rights reserved.</div>
   </div>
 </footer>
 
@@ -390,29 +435,42 @@
     if (e.target.closest('a')) { nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
   });
 
-  // Quote form -> WhatsApp
+  // Quote forms (hero + contact) -> WhatsApp
   const WHATSAPP = '233244519003';
-  const form = document.getElementById('quote-form');
-  const error = document.getElementById('form-error');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const val = (id) => document.getElementById(id).value.trim();
-    const name = val('f-name'), phone = val('f-phone'), email = val('f-email'),
-          cover = val('f-cover'), message = val('f-message');
+  document.querySelectorAll('form[data-quote]').forEach((form) => {
+    const error = form.querySelector('.error');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = (n) => (form.elements[n] ? form.elements[n].value.trim() : '');
+      const name = val('name'), phone = val('phone'), email = val('email'),
+            cover = val('cover'), message = val('message');
 
-    const missing = [];
-    for (const [id, v] of [['f-name', name], ['f-phone', phone]]) {
-      const el = document.getElementById(id);
-      el.setAttribute('aria-invalid', v ? 'false' : 'true');
-      if (!v) missing.push(el.labels[0].textContent);
-    }
-    if (missing.length) {
-      error.textContent = 'Please enter your ' + missing.join(' and ').toLowerCase() + '.';
-      document.getElementById(name ? 'f-phone' : 'f-name').focus();
-      return;
-    }
-    error.textContent = '';
+      const missing = [];
+      for (const el of [form.elements.name, form.elements.phone]) {
+        const empty = !el.value.trim();
+        el.setAttribute('aria-invalid', String(empty));
+        if (empty) missing.push(el);
+      }
+      if (missing.length) {
+        error.textContent = 'Please enter your ' +
+          missing.map((el) => el.labels[0].textContent.toLowerCase()).join(' and ') + '.';
+        missing[0].focus();
+        return;
+      }
+      error.textContent = '';
+      sendToWhatsApp({ name, phone, email, cover, message });
+    });
+  });
 
+  // "Get a quote" on a service: preselect that cover in the contact form
+  document.querySelectorAll('.cover-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      document.getElementById('f-cover').value = link.dataset.cover;
+      setTimeout(() => document.getElementById('f-name').focus({ preventScroll: true }), 400);
+    });
+  });
+
+  function sendToWhatsApp({ name, phone, email, cover, message }) {
     const lines = [
       'Hello MIB, I would like a quote.',
       '',
@@ -428,7 +486,7 @@
     const win = window.open(url, '_blank');
     if (win) win.opener = null;
     else window.location.href = url; // popup blocked: open WhatsApp in this tab instead
-  });
+  }
 </script>
 </body>
 </html>
